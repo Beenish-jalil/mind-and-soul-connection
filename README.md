@@ -37,7 +37,7 @@ The form opens a draft in the visitor's configured email app. The visitor must s
 
 ## Content to review before launch
 
-- Upcoming Events: Breakfast and Connections, October 13, 2026, 11 am to 2 pm, Chai and Chill, Milton.
+- Upcoming Events: this section has been removed from the homepage (it previously listed Breakfast and Connections, October 13, 2026, 11 am to 2 pm, Chai and Chill, Milton).
 - Recent Events: Mom's Meetup, September 24, 2026, 11:30 am to 2 pm, Chai Social, Milton.
 - Team names, roles, and Gmail/Facebook contact information match the supplied website.
 - The decorative `PLANS` label on Get Involved was preserved from the reference; it can be removed if preferred.
