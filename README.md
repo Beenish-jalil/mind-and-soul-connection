@@ -37,9 +37,20 @@ The form opens a draft in the visitor's configured email app. The visitor must s
 
 ## Content to review before launch
 
-- Upcoming Events: this section has been removed from the homepage (it previously listed Breakfast and Connections, October 13, 2026, 11 am to 2 pm, Chai and Chill, Milton).
-- Recent Events: Mom's Meetup, September 24, 2026, 11:30 am to 2 pm, Chai Social, Milton.
+- Events: Upcoming and Recent Events on the homepage are loaded from a Google Sheet (see "Managing events" below).
 - Team names, roles, and Gmail/Facebook contact information match the supplied website.
 - The decorative `PLANS` label on Get Involved was preserved from the reference; it can be removed if preferred.
 
 All recreated pages use clear page titles and working relative links. The original Base44 edit badge and unrelated template link are omitted. Images are optimized WebP copies of the images supplied on the reference website. Fonts are bundled under their accompanying open-source licences.
+
+## Managing events
+
+Homepage events come from the Google Sheet **Mind and Soul – Website Events**
+(https://docs.google.com/spreadsheets/d/1WRlj1d_b8PLBX-mJ6-vYEjBKtfZutCYFgVf7KDtyyms/edit).
+
+- One row per event. Columns: **Title**, **Date**, **Time**, **Location**, **Note** (optional, e.g. "FREE EVENT").
+- Type dates like `2026-12-05`. Rows without a Title or a readable Date are skipped.
+- Events dated today or later appear under **Upcoming Events** (soonest first); past events appear under **Recent Events** (newest first, up to 3). Each section hides itself when it has no events.
+- Delete a row to remove an event. Changes appear on the site within a few minutes.
+- The sheet must stay shared as "Anyone with the link: Viewer" so the site can read it. Everything in it is public.
+- If the sheet can't be reached, the homepage falls back to the event written in `index.html`.

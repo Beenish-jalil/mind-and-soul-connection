@@ -7,3 +7,4 @@
 
 .recent-events{padding-top:64px;padding-bottom:64px;text-align:center}.recent-events>.card{max-width:850px;margin:32px auto 0}.recent-events h3{color:var(--blue)}.recent-events p{font-family:Alegreya,Georgia,serif;font-size:18px;color:var(--muted);margin-bottom:0}
 @media(max-width:700px){.recent-events{padding-top:48px;padding-bottom:48px}}
+.recent-events [data-events]>.card{max-width:850px;margin:32px auto 0}.event-content article+article{margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.3)}[hidden]{display:none!important}
