@@ -1,0 +1,6 @@
+# Search engines and AI assistants are welcome to read this site.
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://mindandsoulconnection.ca/sitemap.xml

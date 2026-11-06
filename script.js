@@ -105,6 +105,31 @@ function renderEvent(event, className = '') {
   return article;
 }
 
+// Tells search engines about each event (shown in Google event listings).
+function addEventStructuredData(events) {
+  if (!events.length) return;
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const data = events.map(event => {
+    const [venue, ...rest] = event.location.split(',').map(part => part.trim());
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Event',
+      name: event.title,
+      startDate: iso(event.date),
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      eventStatus: 'https://schema.org/EventScheduled',
+      ...(event.note ? { description: event.note } : {}),
+      ...(event.location ? { location: { '@type': 'Place', name: venue, address: { '@type': 'PostalAddress', addressLocality: rest.join(', ') || venue, addressRegion: 'ON', addressCountry: 'CA' } } } : {}),
+      organizer: { '@type': 'Organization', name: 'Mind and Soul Community Connection', url: 'https://mindandsoulconnection.ca/' },
+      ...(/free/i.test(event.note) ? { isAccessibleForFree: true } : {}),
+    };
+  });
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(data);
+  document.head.append(script);
+}
+
 async function loadEvents() {
   const upcomingList = document.querySelector('[data-events="upcoming"]');
   const recentList = document.querySelector('[data-events="recent"]');
@@ -128,6 +153,7 @@ async function loadEvents() {
     upcomingList.replaceChildren(...upcoming.map(e => renderEvent(e)));
     document.getElementById('upcoming-events').hidden = upcoming.length === 0;
     recentList.replaceChildren(...recent.map(e => renderEvent(e, 'card')));
+    addEventStructuredData([...upcoming, ...recent]);
     document.getElementById('recent-events').hidden = recent.length === 0;
   } catch (error) {
     console.warn('Could not load events from Google Sheets; showing built-in events.', error);
